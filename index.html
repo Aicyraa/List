@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="UTF-8" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Document</title>
+      <link rel="stylesheet" href="style/style.css" />
+   </head>
+   <body>
+      <!-- Overlay -->
+      <div class="overlay"></div>
+
+      <!-- Error modal -->
+      <div class="error__modal">
+         <div><h3>Something</h3></div>
+         <button id="error__close">Close</button>
+      </div>
+
+      <!-- Edit Modal -->
+      <div class="todo__edit">
+         <div>
+            <div class="todo__edit__header">Edit Task</div>
+            <img
+               src="img/close_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
+               alt="btn"
+               id="header__close__btn"
+            />
+         </div>
+         <textarea rows="13" name="" id="new__task"></textarea>
+         <input type="datetime-local" id="new__task_due" />
+         <button id="todo__edit__submit">Save</button>
+      </div>
+
+      <!-- main -->
+      <div class="main__container">
+         <!--  -->
+         <div class="header__container">
+            <div class="header__add">
+               <div class="header__add__top">
+                  <span>Add new task</span>
+                  <img
+                     src="img/close_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
+                     alt="btn"
+                     id="header__close__btn"
+                  />
+               </div>
+               <textarea rows="13" name="" id="add__task"></textarea>
+               <input type="datetime-local" id="add__task__due" />
+               <button id="header__add__submit">Save</button>
+            </div>
+            <div id="header__text">
+               <span> To Dos</span>
+            </div>
+            <button id="header__add__btn">
+               <img src=".\img\add.png" alt="add" />
+               <span> Task </span>
+            </button>
+         </div>
+         <!--  -->
+         <div class="todo__container">
+            <div class="todo">
+               <div class="todo__info">
+                  <div class="todo__info__left">
+                     <input type="radio" id="todo__radio_1" value="1" />
+                     <span id="todo__task"> Something something </span>
+                  </div>
+                  <div class="todo__info__right">
+                     <div>
+                        <img
+                           src="img/edit_calendar_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
+                           alt=""
+                           id="todo__edit"
+                        />
+                        <img
+                           src="img/delete_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
+                           alt=""
+                           id="todo__delete"
+                        />
+                     </div>
+                     <span id="todo__date"> 1/2/25 </span>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </body>
+   <script type="module" src="/script/script.js"></script>
+</html>
+
+<!-- finish edit modal -->
+<!-- Create function for adding task, create a modal for adding task -->
+<!-- Figure out how the task works -->
