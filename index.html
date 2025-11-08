@@ -7,57 +7,51 @@
       <link rel="stylesheet" href="style/style.css" />
    </head>
    <body>
-      <!-- Overlay -->
-      <div class="overlay"></div>
-
-      <!-- Error modal -->
+      <div class="overlay__screen"></div>
       <div class="error__modal">
-         <div><h3>Something</h3></div>
-         <button id="error__close">Close</button>
+         <h3>Something</h3>
+         <button id="error__modal__btn__close">Close</button>
       </div>
-
-      <!-- Edit Modal -->
-      <div class="todo__edit">
-         <div>
-            <div class="todo__edit__header">Edit Task</div>
+      <div class="edit__modal">
+         <div class="edit__modal__header">
+            <span>Edit Task</span>
             <img
                src="img/close_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
                alt="btn"
-               id="header__close__btn"
+               id="edit__modal__button__close"
             />
          </div>
-         <textarea rows="13" name="" id="new__task"></textarea>
-         <input type="datetime-local" id="new__task_due" />
-         <button id="todo__edit__submit">Save</button>
+         <textarea rows="13" name="" id="edit__task"></textarea>
+         <input type="datetime-local" id="edit__task_due" />
+         <button id="edit__modal__submit">Save</button>
       </div>
 
       <!-- main -->
-      <div class="main__container">
-         <!--  -->
-         <div class="header__container">
-            <div class="header__add">
-               <div class="header__add__top">
+      <main class="main__container">
+         <div class="main__header">
+            <div class="add__modal">
+               <div class="add__modal__top">
                   <span>Add new task</span>
                   <img
                      src="img/close_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
                      alt="btn"
-                     id="header__close__btn"
+                     id="add__modal__button__close"
                   />
                </div>
-               <textarea rows="13" name="" id="add__task"></textarea>
-               <input type="datetime-local" id="add__task__due" />
-               <button id="header__add__submit">Save</button>
+               <textarea rows="13" id="add__modal__task"></textarea>
+               <input type="datetime-local" id="add__modal__task__due" />
+               <button id="add__modal__submit">Save</button>
             </div>
-            <div id="header__text">
-               <span> To Dos</span>
+            <div id="main__header__txt">
+               <span> To Do </span>
             </div>
-            <button id="header__add__btn">
+            <button id="main__header__button">
                <img src=".\img\add.png" alt="add" />
                <span> Task </span>
             </button>
          </div>
-         <!--  -->
-         <div class="todo__container">
+         <!--  taks  -->
+         <div class="main__todo__container">
             <div class="todo">
                <div class="todo__info">
                   <div class="todo__info__left">
@@ -69,7 +63,7 @@
                         <img
                            src="img/edit_calendar_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
                            alt=""
-                           id="todo__edit"
+                           id="edit__modal"
                         />
                         <img
                            src="img/delete_17dp_434343_FILL0_wght400_GRAD0_opsz20.svg"
@@ -82,11 +76,7 @@
                </div>
             </div>
          </div>
-      </div>
+      </main>
    </body>
-   <script type="module" src="/script/script.js"></script>
+   <script type="module" src="/script/script.js" defer></script>
 </html>
-
-<!-- finish edit modal -->
-<!-- Create function for adding task, create a modal for adding task -->
-<!-- Figure out how the task works -->

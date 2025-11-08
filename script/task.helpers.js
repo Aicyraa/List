@@ -1,4 +1,4 @@
-import modal, { openModal as open, closeModal as close } from "./modal.manager.js";
+import modalManager, { openModal as open, closeModal as close } from "./modal.manager.js";
 
 export function setID() {
    let current_id = JSON.parse(localStorage.getItem("id")) || 1;
@@ -13,6 +13,12 @@ export function clearInputs(...inputs) {
    }
 }
 
+export function processDate(date) {
+   console.log(date);
+   
+   return date.value.split("T")
+}
+
 export function renderTask() {
    let storage = JSON.parse(localStorage.getItem("storage"));
    if (!storage || storage == '') return;
@@ -22,7 +28,7 @@ export function renderTask() {
       el.setAttribute("class", `todo todo__${task.id}`);
       el.innerHTML = 
          `
-         <div class="todo__info" dataset-id=${task.id}>
+         <div class="todo__info" data-id=${task.id}>
             <div class="todo__info__left">
                <input type="radio" id="todo__radio__${task.id}" value="${task.id}" />
                <span id="todo__task"> ${task.task} </span>
@@ -42,6 +48,8 @@ export function renderTask() {
    });
 }
 
+// modularize
+
 function attachListeners(task) {
    let parent = document.querySelector(`.todo__${task.id}`);
    parent.querySelector("input").addEventListener("click", (e) => {
@@ -52,7 +60,8 @@ function attachListeners(task) {
    for (let btn of btns.children) {
       if (btn.classList.contains("edit__btn")) {
          btn.addEventListener("click", (e) => {
-            open(modal.editModal, modal.overlay__screen)();
+            open(modalManager.editModal, modalManager.overlay__screen)();
+            modalManager.editModal.dataset.task = task.id
          });
          continue;
       }
@@ -70,3 +79,5 @@ function attachListeners(task) {
       });
    }
 }
+
+
