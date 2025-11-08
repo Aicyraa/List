@@ -1,5 +1,5 @@
 import Task from "./task.class.js";
-import { setID as id, clearInputs as clear, renderTask as render, processDate} from "./task.helpers.js";
+import { setID as id, clearInputs as clear, renderTask as render, processDate, editData} from "./task.helpers.js";
 import modalManager, {
    openModal as open,
    closeModal as close,
@@ -37,12 +37,11 @@ modalManager.saveBtn.addEventListener("click", (e) => {
 });
 
 modalManager.editModalSavebtn.addEventListener("click", () => {
-   // must change the data in localstorage
    let editingId, parent, currentTask, currentDate;
    editingId = modalManager.editModal.dataset.task
    parent = document.querySelector(`.todo__${editingId}`)
-   currentTask = parent.querySelector("#todo__task") 
-   currentDate = parent.querySelector("#todo__date")
+   currentTask = parent.querySelector("#todo__task").textContent
+   currentDate = parent.querySelector("#todo__date").textContent
 
    let [newTask, newDate] = [
       modalManager.editModal.querySelector("textarea"),
@@ -51,9 +50,7 @@ modalManager.editModalSavebtn.addEventListener("click", () => {
 
    let [date] = processDate(newDate)
 
-   currentTask.textContent = newTask.value || currentTask.textContent
-   currentDate.textContent = date || currentDate.textContent
-
+   editData(parent, newTask.value || currentTask, date || currentDate)
    clear(newTask, newDate)
    close(modalManager.editModal, modalManager.overlay__screen)()
 })
