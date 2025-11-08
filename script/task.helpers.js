@@ -1,4 +1,7 @@
-import modalManager, { openModal as open, closeModal as close } from "./modal.manager.js";
+import modalManager, {
+   openModal as open,
+   closeModal as close,
+} from "./modal.manager.js";
 
 export function setID() {
    let current_id = JSON.parse(localStorage.getItem("id")) || 1;
@@ -14,20 +17,41 @@ export function clearInputs(...inputs) {
 }
 
 export function processDate(date) {
-   console.log(date);
-   
-   return date.value.split("T")
+   return date.value.split("T");
+}
+
+export function editData(...newValue) {
+   let [parent, newTask, newDate] = newValue;
+   const data = parent.querySelector(".todo__info");
+   const dataId = data.dataset.id;
+
+   let storage = JSON.parse(localStorage.getItem("storage")).map(
+      (currentTask) => {
+         if (currentTask.id == dataId) {
+            return {
+               id: currentTask.id,
+               task: newTask,
+               deadline: newDate,
+               isComplete: currentTask.isComplete,
+            };
+         }
+         return currentTask
+      }
+   );
+
+   document.querySelector(".main__todo__container").innerHTML = "";
+   localStorage.setItem("storage", JSON.stringify(storage))
+   renderTask();
 }
 
 export function renderTask() {
    let storage = JSON.parse(localStorage.getItem("storage"));
-   if (!storage || storage == '') return;
+   if (!storage || storage == "") return;
 
    storage.forEach((task) => {
       let el = document.createElement("div");
       el.setAttribute("class", `todo todo__${task.id}`);
-      el.innerHTML = 
-         `
+      el.innerHTML = `
          <div class="todo__info" data-id=${task.id}>
             <div class="todo__info__left">
                <input type="radio" id="todo__radio__${task.id}" value="${task.id}" />
@@ -61,23 +85,23 @@ function attachListeners(task) {
       if (btn.classList.contains("edit__btn")) {
          btn.addEventListener("click", (e) => {
             open(modalManager.editModal, modalManager.overlay__screen)();
-            modalManager.editModal.dataset.task = task.id
+            modalManager.editModal.dataset.task = task.id;
          });
          continue;
       }
 
       btn.addEventListener("click", (e) => {
-         let storage = JSON.parse(localStorage.getItem("storage"))
-         storage.forEach(currentTask => {
-            if (currentTask.id = task.id) {
-               storage.splice(currentTask.id - 1, 1)
-               return
-            }
-         })
-         localStorage.setItem("storage", JSON.stringify(storage))
-         parent.remove()
+         let storage = JSON.parse(localStorage.getItem("storage"));
+         const index = storage.findIndex(
+            (currentTask) => currentTask.id === task.id
+         );
+
+         if (index != -1) {
+            storage.splice(index, 1);
+         }
+
+         localStorage.setItem("storage", JSON.stringify(storage));
+         parent.remove();
       });
    }
 }
-
-
