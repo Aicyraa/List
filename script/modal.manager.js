@@ -1,8 +1,8 @@
 let modalManager = {
    // re organized the codfe and their names
    overlay__screen: document.querySelector(".overlay__screen"),
-
-   addModalOpenBtn: document.getElementById("main__header__button"),
+   todoContainer: document.querySelector(".main__todo__container"),
+ addin__header__button"),
    addModalBtnClose: document.getElementById("add__modal__button__close"),
    saveBtn: document.getElementById("add__modal__submit"),
    addModal: document.querySelector(".add__modal"),
