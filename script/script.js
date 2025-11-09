@@ -33,10 +33,10 @@ modalManager.saveBtn.addEventListener("click", (e) => {
    let task = document.getElementById("add__modal__task");
    let deadline = document.getElementById("add__modal__task__due");
 
-   if (!task.value.trim() || !deadline.value.trim()) {
-      return err("Invalid Input!");
-   }
-
+   if (!task.value.trim()) return err('Input cannot be empty!')
+   else if (!task.value.trim() < 3) return err('Input is less than 3')
+   else if (!deadline.value.trim()) return err('Set a deadline!')
+   
    let [date, time] = processDate(deadline);
 
    let storage = JSON.parse(localStorage.getItem("storage")) || [];

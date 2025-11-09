@@ -2,7 +2,8 @@ let modalManager = {
    // re organized the codfe and their names
    overlay__screen: document.querySelector(".overlay__screen"),
    todoContainer: document.querySelector(".main__todo__container"),
- addin__header__button"),
+
+   addModalOpenBtn: document.getElementById("main__header__button"),
    addModalBtnClose: document.getElementById("add__modal__button__close"),
    saveBtn: document.getElementById("add__modal__submit"),
    addModal: document.querySelector(".add__modal"),
@@ -13,7 +14,6 @@ let modalManager = {
    editModalCloseBtn: document.getElementById("edit__modal__button__close"),
    editModalSavebtn: document.getElementById("edit__modal__submit"),
    editModal: document.querySelector(".edit__modal"),
-
 };
 
 export function openModal(...modals) {
@@ -33,7 +33,7 @@ export function closeModal(...modals) {
 }
 
 export function setError(err) {
-   modalManager.errModal.querySelector('h3').textContent = err
+   modalManager.errModal.querySelector("h3").textContent = err;
    openModal(modalManager.errModal)();
 }
 
